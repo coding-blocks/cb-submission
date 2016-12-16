@@ -11,7 +11,8 @@ describe('#judge', function () {
         var source = '#include<stdio.h> int main() {int a, b, c; scanf("%d%d", &a, &b); c = a + b; printf("%d", c);}';
         var testcases = ["1 2"];
         var expected = ["3"];
-        judge("c", source, testcases, expected, function (body) {
+        var test_count = 1;
+        judge("c", source, test_count, testcases, expected, function (body) {
             body.should.equal('3');
             done();
         });
