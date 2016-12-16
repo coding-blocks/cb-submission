@@ -1,0 +1,24 @@
+{
+  "name": "cb-submission",
+  "version": "0.2.0",
+  "description": "A node.js module to judge code via the Coding Blocks Submission API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coding-blocks/cb-submission.git"
+  },
+  "keywords": [
+    "submission",
+    "codingblocks",
+    "api"
+  ],
+  "author": "Umair Khan <omerjerk@gmail.com> (http://omerjerk.in)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coding-blocks/cb-submission/issues"
+  },
+  "homepage": "https://github.com/coding-blocks/cb-submission#readme"
+}
