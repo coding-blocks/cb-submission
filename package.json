@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/coding-blocks/cb-submission/issues"
   },
-  "homepage": "https://github.com/coding-blocks/cb-submission#readme"
+  "homepage": "https://github.com/coding-blocks/cb-submission#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
 }
