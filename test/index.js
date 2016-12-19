@@ -7,14 +7,19 @@ var should = require('chai').should(),
     judge = submission.judge;
 
 describe('#judge', function () {
-    it('judges a trivial submission to add two numbers', function (done) {
-        var source = '#include<stdio.h> int main() {int a, b, c; scanf("%d%d", &a, &b); c = a + b; printf("%d", c);}';
+    it('judges a trivial c submission to add two numbers', function (done) {
+        var source = '#include<stdio.h> \nint main() {\nint a, b, c; \nscanf("%d%d", &a, &b); \nc = a + b; printf("%d", c);\n}';
         var testcases = ["1 2"];
         var expected = ["3"];
         var test_count = 1;
         judge("c", source, test_count, testcases, expected, function (body) {
-            body.should.equal('3');
+            body = JSON.parse(body);
+            body.result.should.equal("success");
+            var testcases = body.data.testcases;
+            for (var i = 0; i < testcases.length; ++i) {
+                testcases[i].should.equal("correct");
+            }
             done();
         });
-    });
+    }).timeout(5000);
 });

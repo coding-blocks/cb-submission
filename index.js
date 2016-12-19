@@ -22,6 +22,7 @@ module.exports = {
                 source: source,
                 test_count: test_count,
                 testcases: testcases,
+                expected: expected,
                 wait: true
             }
         }, function(error, response, body) {
