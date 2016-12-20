@@ -3,6 +3,7 @@
  */
 
 var should = require('chai').should(),
+    base64 = require("base-64"),
     submission = require('../index'),
     judge = submission.judge;
 
@@ -17,7 +18,9 @@ describe('#judge', function () {
             body.result.should.equal("success");
             var testcases = body.data.testcases;
             for (var i = 0; i < testcases.length; ++i) {
-                testcases[i].should.equal("correct");
+                testcases[i].result.should.equal("correct");
+                var output = base64.decode(testcases[i].output);
+                output.should.equal("3");
             }
             done();
         });
