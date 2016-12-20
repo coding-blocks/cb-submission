@@ -13,7 +13,7 @@ describe('#judge', function () {
         var testcases = ["1 2"];
         var expected = ["3"];
         var test_count = 1;
-        judge("c", source, test_count, testcases, expected, function (body) {
+        judge("c", source, test_count, testcases, expected, true, function (body) {
             body = JSON.parse(body);
             body.result.should.equal("success");
             var testcases = body.data.testcases;
@@ -24,5 +24,5 @@ describe('#judge', function () {
             }
             done();
         });
-    }).timeout(5000);
+    }).timeout(6000);
 });
