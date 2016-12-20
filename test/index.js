@@ -3,6 +3,7 @@
  */
 
 var should = require('chai').should(),
+    expect = require('chai').expect,
     base64 = require("base-64"),
     submission = require('../index'),
     judge = submission.judge;
@@ -21,6 +22,23 @@ describe('#judge', function () {
                 testcases[i].result.should.equal("correct");
                 var output = base64.decode(testcases[i].output);
                 output.should.equal("3");
+            }
+            done();
+        });
+    }).timeout(6000);
+
+    it('judges a submission and make sure output is not present', function (done) {
+        var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!");\n}';
+        var testcases = [""];
+        var expected = ["Hello World!"];
+        var test_count = 1;
+        judge("c", source, test_count, testcases, expected, false, function (body) {
+            body = JSON.parse(body);
+            body.result.should.equal("success");
+            var testcases = body.data.testcases;
+            for (var i = 0; i < testcases.length; ++i) {
+                testcases[i].result.should.equal("correct");
+                expect(testcases[i].output).to.be.undefined;
             }
             done();
         });
