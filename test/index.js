@@ -9,6 +9,7 @@ var should = require('chai').should(),
     judge = submission.judge;
 
 describe('#judge', function () {
+
     it('judges a trivial c submission to add two numbers', function (done) {
         var source = '#include<stdio.h> \nint main() {\nint a, b, c; \nscanf("%d%d", &a, &b); \nc = a + b; printf("%d", c);\n}';
         var testcases = ["1 2"];
@@ -42,5 +43,17 @@ describe('#judge', function () {
             }
             done();
         });
+    }).timeout(6000);
+
+    it('check if a wrong program gives out a compilation error', function (done) {
+        var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!")\n}';
+        var testcases = [""];
+        var expected = [""];
+        var test_count = 1;
+        judge("c", source, test_count, testcases, expected, true, function (body) {
+            body = JSON.parse(body);
+            body.result.should.equal("compile_error");
+            done();
+        })
     }).timeout(6000);
 });
