@@ -8,7 +8,7 @@ var should = require('chai').should(),
     submission = require('../index'),
     judge = submission.judge;
 
-describe('#Test C Submissions', function () {
+describe('#Test C submissions', function () {
 
     it('judges a trivial c submission to add two numbers', function (done) {
         var source = '#include<stdio.h> \nint main() {\nint a, b, c; \nscanf("%d%d", &a, &b); \nc = a + b; printf("%d", c);\n}';
