@@ -8,7 +8,7 @@ var should = require('chai').should(),
     submission = require('../index'),
     judge = submission.judge;
 
-describe('#judge', function () {
+describe('#Test C Submissions', function () {
 
     it('judges a trivial c submission to add two numbers', function (done) {
         var source = '#include<stdio.h> \nint main() {\nint a, b, c; \nscanf("%d%d", &a, &b); \nc = a + b; printf("%d", c);\n}';
@@ -26,7 +26,7 @@ describe('#judge', function () {
             }
             done();
         });
-    }).timeout(6000);
+    }).timeout(5000);
 
     it('judges a submission and make sure output is not present', function (done) {
         var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!");\n}';
@@ -43,7 +43,7 @@ describe('#judge', function () {
             }
             done();
         });
-    }).timeout(6000);
+    }).timeout(5000);
 
     it('check if a wrong program gives out a compilation error', function (done) {
         var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!")\n}';
@@ -55,5 +55,5 @@ describe('#judge', function () {
             body.result.should.equal("compile_error");
             done();
         })
-    }).timeout(6000);
+    }).timeout(5000);
 });
