@@ -14,18 +14,17 @@ module.exports = {
             testcases[i] = base64.encode(testcases[i]);
             expected[i] = base64.encode(expected[i]);
         }
+        var form_data = {};
+        form_data.lang = lang;
+        form_data.source = source;
+        form_data.test_count = test_count;
+        form_data.input = testcases;
+        form_data.expected_output = expected;
+        form_data.get_output = get_output;
         request({
             uri: URL + "submission",
             method: "POST",
-            form: {
-                lang: lang,
-                source: source,
-                test_count: test_count,
-                testcases: testcases,
-                expected: expected,
-                get_output: get_output,
-                wait: true
-            }
+            form: form_data
         }, function(error, response, body) {
             console.log(body);
             callback(body);
