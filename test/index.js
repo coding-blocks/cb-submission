@@ -45,7 +45,7 @@ describe('#Test C submissions', function () {
         });
     }).timeout(5000);
 
-    it('check if a wrong program gives out a compilation error', function (done) {
+    it('check if an incorrect source gives out a compilation error', function (done) {
         var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!")\n}';
         var testcases = [""];
         var expected = [""];
@@ -56,4 +56,17 @@ describe('#Test C submissions', function () {
             done();
         })
     }).timeout(5000);
+
+    it('checks if the wrong output gives wrong-answer as the response', function (done) {
+        var source = '#include<stdio.h> \nint main() {\nprintf("Hello World!");\n}';
+        var testcases = [""];
+        var expected = [""];
+        var test_count = 1;
+        judge("c", source, test_count, testcases, expected, true, function (body) {
+            body = JSON.parse(body);
+            body.result.should.equal("success");
+            body.data.testcases[0].result.should.equal("wrong-answer");
+            done();
+        });
+    });
 });
