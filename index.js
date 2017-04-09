@@ -4,8 +4,9 @@
 
 var request = require("request");
 var base64 = require("base-64");
+let util = require("./util/util.js");
 
-const URL = "http://judge.cb.lk/api/";
+const URL = util.requireFromEnvironment("JUDGE_API_URL");
 
 module.exports = {
     judge: function(lang, source, test_count, testcases, expected, get_output, callback) {
