@@ -3,5 +3,4 @@ A node.js module to judge code via the Coding Blocks Submission API
 
 ## Configuration
 
-Remember to set `$JUDGE_API_URL` if you're testing a server that isn't
-production.
+See `util/env.sh.example` for details on how to set up your environment.
