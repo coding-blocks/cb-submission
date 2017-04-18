@@ -23,7 +23,8 @@
   "homepage": "https://github.com/coding-blocks/cb-submission#readme",
   "dependencies": {
     "base-64": "^0.1.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+	"ramda": "0.23.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
