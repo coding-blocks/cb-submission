@@ -5,7 +5,8 @@
 let Request = require("request"),
     base64 = require("base-64"),
     R = require("ramda"),
-    util = require("./util/util.js")
+    util = require("./util/util.js"),
+    testrunner = require('./test/testrunner.js');
 
 const URL = util.requireFromEnvironment("JUDGE_API_URL")
 const ACCESS_TOKEN = util.requireFromEnvironment("JUDGE_API_ACCESS_TOKEN")
@@ -35,3 +36,5 @@ module.exports = {
     })
   }
 }
+
+testrunner.runTests();
