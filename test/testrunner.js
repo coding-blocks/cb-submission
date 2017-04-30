@@ -16,13 +16,9 @@ var runTests = function(){
                         console.log('Test passed');
                     })
                     .on('fail', function(test, err) {
-                        console.log('Test fail');
-                        isJudgeDown = true;
-                    });
-
-                    if(isJudgeDown){
+                        console.log('Test failed');
                         mail.sendMail();
-                    }
+                    });
             }
 
 exports.runTests = runTests;

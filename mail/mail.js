@@ -4,17 +4,17 @@ var exports = module.exports = {};
 const sendMail = function(){
                     // create reusable transporter object using the default SMTP transport
                     let transporter = nodemailer.createTransport({
-                        service: 'gmail',
+                        service: 'outlook',
                         auth: {
-                            user: 'abc@gmail.com',
-                            pass: '********'
+                            user: process.env.NOTI_EMAIL,
+                            pass: process.env.NOTI_EMAIL_PASS
                         }
                     });
 
                     // setup email data with unicode symbols
                     let mailOptions = {
-                        from: 'abc@gmail.com', // sender address
-                        to: 'abc@gmail.com, def@nagarro.com', // list of receivers
+                        from: process.env.NOTI_EMAIL, // sender address
+                        to: 'umair@codingblocks.com, prajjwal@codingblocks.com, arnav@codingblocks.com', // list of receivers
                         subject: 'Notification - Judge is down', // Subject line
                         text: 'Error Judge is down', // plain text body
                         html: '<b>Error Judge is down</b>' // html body
