@@ -8,8 +8,9 @@ let Request = require("request"),
     util = require("./util/util.js"),
     testrunner = require('./test/testrunner.js');
 
-const URL = util.requireFromEnvironment("JUDGE_API_URL")
-const ACCESS_TOKEN = util.requireFromEnvironment("JUDGE_API_ACCESS_TOKEN")
+const URL = util.requireFromEnvironment("JUDGE_API_URL"),
+  ACCESS_TOKEN = util.requireFromEnvironment("JUDGE_API_ACCESS_TOKEN"),
+  X_FORWARDED_FOR = util.requireFromEnvironment("JUDGE_X_FORWARDED_FOR")
 
 module.exports = {
   judge: (lang, source, test_count, testcases, expected, get_output, callback) => {
@@ -27,7 +28,8 @@ module.exports = {
       method: "POST",
       form: form_data,
       headers: {
-        "access-token": ACCESS_TOKEN
+        "access-token": ACCESS_TOKEN,
+        "x-forwarded-for": X_FORWARDED_FOR
       }
     }, (error, response, body) => {
       if (error) console.error(error)
