@@ -1,33 +1,26 @@
-var Mocha = require('mocha');
-var mocha = new Mocha({});
-var mail = require('../mail/mail.js');
+let Mocha = require('mocha');
+let mocha = new Mocha({});
+let mail = require('../mail/mail.js');
 
-var exports = module.exports = {};
+let runTests = () => {
+  let isJudgeDown = false;
 
-var runTests = function(){
-                    var isJudgeDown = false;
+  mocha.addFile('test/index.js');
+  mocha.addFile('test/python.js');
+  mocha.addFile('test/java.js');
 
-                    mocha.addFile('test/index.js');
-                    mocha.addFile('test/python.js');
-                    mocha.addFile('test/java.js');
-                    
-                    mocha.run()
-                    .on('pass', function(test) {
-                        console.log('Test passed');
-                    })
-                    .on('fail', function(test, err) {
-                        console.log('Test fail');
-                        isJudgeDown = true;
-                    });
+  mocha.run()
+    .on('pass', (test) => {
+      console.log('Test passed');
+    })
+    .on('fail', (test, error) => {
+      console.error('Test fail');
+      isJudgeDown = true;
+    });
 
-                    if(isJudgeDown){
-                        mail.sendMail();
-                    }
-            }
+  if (isJudgeDown) {
+    mail.sendMail();
+  }
+}
 
-exports.runTests = runTests;
-
-
-
-
-
+module.exports.runTests = runTests;
