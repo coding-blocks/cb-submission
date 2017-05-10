@@ -36,6 +36,27 @@ module.exports = {
       console.log(body)
       callback(JSON.parse(body))
     })
+  },
+
+  run: (lang, source, input, maxruntime, callback) => {
+    Request({
+      uri: `${URL}run`,
+      method: "POST",
+      form: {
+        lang: lang,
+        source: base64.encode(source),
+        input: base64.encode(input),
+        maxruntime: maxruntime
+      },
+      headers: {
+        "access-token": ACCESS_TOKEN,
+        "x-forwarded-for": X_FORWARDED_FOR
+      }
+    }, (error, response, body) => {
+      if (error) console.error(error)
+      console.log(body)
+      callback(JSON.parse(body))
+    })
   }
 }
 

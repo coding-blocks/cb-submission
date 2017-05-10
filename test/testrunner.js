@@ -8,6 +8,7 @@ let runTests = () => {
   mocha.addFile('test/index.js');
   mocha.addFile('test/python.js');
   mocha.addFile('test/java.js');
+  mocha.addFile('test/run.js');
 
   mocha.run()
     .on('pass', (test) => {
