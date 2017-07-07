@@ -52,6 +52,48 @@ describe('Test /run endpoint', function () {
       done()
     })
   }).timeout(TIMEOUT)
+
+  it('returns correct result for correct javascript sample', (done) => {
+    const source = `
+      'use strict';
+
+      const I = x => x
+
+      const times = (fn, count) => {
+         let acc = []
+
+         for (let i = 0; i < count; ++i) {
+           acc.push (fn (i))
+         }
+
+         return acc
+      }
+
+      const double = x => x * 2
+
+      const xs = times (I, 3)
+
+      const doubled = xs.map (double)
+
+      for (const x of doubled) {
+        console.log (x)
+      }
+    `
+
+    const input = ""
+    const expectedOutput = base64.encode("0\n2\n4\n")
+
+    run("js", source, input, 5, (body) => {
+      let { result, data: { output } } = body
+
+      console.log("Actual Output: ", base64.decode(output))
+
+      result.should.equal("success")
+      output.should.equal(expectedOutput)
+
+      done()
+    })
+  }).timeout(TIMEOUT)
 })
 
 it('indicates compilation error for incorrect sample', (done) => {

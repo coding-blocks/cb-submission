@@ -9,6 +9,7 @@ let runTests = () => {
   mocha.addFile('test/python.js');
   mocha.addFile('test/java.js');
   mocha.addFile('test/run.js');
+  mocha.addFile('test/javascript.js');
 
   mocha.run()
     .on('pass', (test) => {
