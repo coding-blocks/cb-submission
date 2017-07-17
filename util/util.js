@@ -19,7 +19,8 @@ const noop = () => undefined
 
 const assertResult = (response, expectedResult, expectedTestResults, expectedTestOutputs) => {
   let testcases = response.data.testcases
-
+  console.log("response.result: ", response.result); 
+ console.log("exceptedResult",expectedResult); 
   response.result.should.equal(expectedResult)
 
   R.forEach(
