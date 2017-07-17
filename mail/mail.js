@@ -6,15 +6,15 @@ const sendMail = function(){
                     let transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
-                            user: 'abc@gmail.com',
-                            pass: '********'
+                            user: process.env.user,
+                            pass: process.env.password
                         }
                     });
 
                     // setup email data with unicode symbols
                     let mailOptions = {
                         from: 'abc@gmail.com', // sender address
-                        to: 'abc@gmail.com, def@nagarro.com', // list of receivers
+                        to:'omerjerk@gmail.com', // list of receivers
                         subject: 'Notification - Judge is down', // Subject line
                         text: 'Error Judge is down', // plain text body
                         html: '<b>Error Judge is down</b>' // html body
