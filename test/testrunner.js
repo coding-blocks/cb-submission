@@ -5,6 +5,7 @@ let mail = require('../mail/mail.js');
 let runTests = () => {
   let isJudgeDown = false;
   mocha.addFile('test/index.js');
+  mocha.addFile('test/time.js');
   mocha.addFile('test/python.js');
   mocha.addFile('test/java.js');
   mocha.addFile('test/run.js');

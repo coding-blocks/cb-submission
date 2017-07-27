@@ -14,6 +14,7 @@ const URL = util.requireFromEnvironment("JUDGE_API_URL"),
 
 module.exports = {
   judge: (lang, source, test_count, testcases, expected, get_output, callback) => {
+
     let form_data = {
       lang: lang,
       source: base64.encode(source),
@@ -22,19 +23,18 @@ module.exports = {
       expected_output: R.map(base64.encode, expected),
       get_output: get_output
     }
-
-    Request({
-      uri: `${URL}submission`,
-      method: "POST",
-      form: form_data,
+   
+    Request.post({
+      url: `${URL}submission`,
+      body: form_data,
       headers: {
         "access-token": ACCESS_TOKEN,
         "x-forwarded-for": X_FORWARDED_FOR
-      }
+      },
+      json: true
     }, (error, response, body) => {
       if (error) console.error(error)
-      console.log(body)
-      callback(JSON.parse(body))
+      callback(body)
     })
   },
 

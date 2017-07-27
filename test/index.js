@@ -11,7 +11,7 @@ describe('#Test C submissions', () => {
     let source = '#include<stdio.h> \nint main(void) {\nint a, b, c; \nscanf("%d%d", &a, &b); \nc = a + b; printf("%d", c);\n}'
     let testcases = ["1 2","3 4"]
     let expected = ["3","7"]
-    let test_count = 1
+    let test_count = 2
 
     judge("c", source, test_count, testcases, expected, true, (body) => {     
       util.assertResult(body, "success", ["correct"], expected)
