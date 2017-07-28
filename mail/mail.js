@@ -4,7 +4,7 @@ var exports = module.exports = {};
 const sendMail = function(){
                     // create reusable transporter object using the default SMTP transport
                     let transporter = nodemailer.createTransport({
-                        service: 'gmail',
+                        service: "gmail",
                         auth: {
                             user: process.env.user,
                             pass: process.env.password
@@ -13,8 +13,8 @@ const sendMail = function(){
 
                     // setup email data with unicode symbols
                     let mailOptions = {
-                        from: 'abc@gmail.com', // sender address
-                        to:'omerjerk@gmail.com', // list of receivers
+                        from: 'umair@codingblocks.com', // sender address
+                        to:'omerjerk@gmail.com, a@codingblocks.com, prajjwal@codingblocks.com', // list of receivers
                         subject: 'Notification - Judge is down', // Subject line
                         text: 'Error Judge is down', // plain text body
                         html: '<b>Error Judge is down</b>' // html body
