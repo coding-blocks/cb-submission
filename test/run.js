@@ -94,7 +94,6 @@ describe('Test /run endpoint', function () {
       done()
     })
   }).timeout(TIMEOUT)
-})
 
 it('indicates compilation error for incorrect sample', (done) => {
   const source = 'public class Main {\n' +
@@ -115,3 +114,20 @@ it('indicates compilation error for incorrect sample', (done) => {
     done()
   });
 }).timeout(TIMEOUT)
+
+
+it('returns success for a trivial, and correct sample C#',(done) => {
+    const source = `using System;public class Test{public static void Main(){ Console.WriteLine("Hello World");}}`
+    const testcases = [""]
+    const expected = ["Hello World\n"]
+    const test_count = 1
+    const expectedOutput = base64.encode("Hello World\n")
+
+    run("csharp", source,"",5,(body) => {
+      let { result, data: { output } } = body
+      result.should.equal("success")
+      output.should.equal(expectedOutput)
+      done()
+    });
+  }).timeout(TIMEOUT)
+})
