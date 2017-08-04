@@ -17,16 +17,20 @@ const requireFromEnvironment = (variable) => {
 
 const noop = () => undefined
 
-const assertResult = (response, expectedResult, expectedTestResults, expectedTestOutputs) => {
+const assertResult = (response, expectedResult, expectedTestResults, expectedTestOutputs,toLog=true) => {
   let testcases = response.data.testcases
-  console.log("response.result: ", response.result); 
- console.log("exceptedResult",expectedResult);
+  if(toLog){
+	console.log("response.result: ", response.result); 
+ 	console.log("exceptedResult",expectedResult);
+  }
   response.result.should.equal(expectedResult)
 
   R.forEach(
     ([{ result, output }, [expectedResult, expectedOutput]]) => {
+   if(toLog){
       console.log("output: ", output)
       console.log("expectedOutput: ", expectedOutput)
+   }
       result.should.equal(expectedResult)
       base64.decode(output)
         .should
