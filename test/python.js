@@ -10,7 +10,7 @@ const TIMEOUT = 5000
 
 describe('#Test Python submissions', () => {
   it('returns success for a trivial, and correct python sample', (done) => {
-    let source = 'print("Hello World!")',
+    let source = `print("Hello World!")`,
         testcases = [""],
         expected = ["Hello World!\n"],
         test_count = 1
